@@ -1,0 +1,8 @@
+{
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "[css]": {
+    "path-autocomplete.extensionOnImport": true,
+},
+}
