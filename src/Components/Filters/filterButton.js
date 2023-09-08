@@ -1,5 +1,5 @@
 import React from "react";
-import "./filterButton.scss";
+import "./FilterButton.scss";
 
 const FilterButton = ({ filter, renderOptions, label }) => {
   const dropdownClass = label.isOpen ? "dropdown on" : "dropdown"; // Add the "on" class if isOpen is true

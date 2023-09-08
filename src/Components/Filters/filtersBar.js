@@ -1,6 +1,6 @@
 import React from "react";
-import FilterButtonWithDropdown from "./filterButtonWithDropdown";
-import "./filterButton.scss";
+import FilterButtonWithDropdown from "./FilterButtonWithDropdown";
+import "./FilterButton.scss";
 
 const FiltersBar = () => {
   return (

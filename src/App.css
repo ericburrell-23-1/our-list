@@ -1,5 +1,6 @@
 body {
   background-color: #282c3473;
+  background-image: url("../public/chicago-background.jpeg");
 }
 
 .App {

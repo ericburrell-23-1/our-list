@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./filterButton.scss";
-import FilterButton from "./filterButton";
+import "./FilterButton.scss";
+import FilterButton from "./FilterButton";
 
 class FilterButtonWithDropdown extends Component {
   constructor(props) {
