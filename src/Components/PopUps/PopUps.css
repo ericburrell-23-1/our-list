@@ -1,0 +1,132 @@
+.box {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+p {
+  font-size: 17px;
+  align-items: center;
+}
+.box p {
+  display: inline-block;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 3px;
+}
+.modal {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(40, 44, 52, 0.7);
+  transition: all 0.4s;
+  /*visibility: hidden;*/
+  opacity: 1;
+}
+.content {
+  position: absolute;
+  background: white;
+  width: 400px;
+  padding: 1em 2em;
+  border-radius: 4px;
+}
+
+/* .modal:target {
+  visibility: visible;
+  opacity: 1;
+} */
+.box-close {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  color: #fe0606;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+/* Style the PopUp Header */
+#popup-box h1 {
+  color: #61dafb;
+}
+
+/* Style the form container */
+#popup-box form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style form labels */
+#popup-box form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #282c34; /* Adjust the color as needed */
+}
+
+/* Style form input and select fields */
+#popup-box form input[type="text"],
+#popup-box form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333; /* Text color */
+  box-sizing: border-box;
+}
+
+/* Style placeholder text for select fields */
+#popup-box form select:invalid {
+  color: #636c72; /* Placeholder text color */
+}
+
+/* Style the button container for horizontal layout */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+  margin-top: 10px; /* Add spacing between buttons */
+}
+
+/* Style form submit button */
+#popup-box form button[type="submit"] {
+  background-color: #61dafb;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the submit button */
+#popup-box form button[type="submit"]:hover {
+  background-color: #4682b4; /* Change the hover color as desired */
+}
+
+/* Style the "Cancel" button */
+#popup-box button[type="button"] {
+  background-color: #ccc;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the "Cancel" button */
+#popup-box button[type="button"]:hover {
+  background-color: #999; /* Change the hover color as desired */
+}

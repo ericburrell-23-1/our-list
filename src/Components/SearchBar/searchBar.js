@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
+// import { inspect } from "util";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    onSearch(e.target.value);
+    setSearchQuery(e.target.value);
+  };
+
+  const handleBlur = () => {
+    onSearch(searchQuery);
+  };
+
   return (
     <div>
       <input
         type="text"
-        placeholder="Search restaurants..."
+        placeholder="Search restaurants by name..."
         className="Search-bar"
+        value={searchQuery}
+        onChange={handleInputChange}
+        onBlur={handleBlur}
       ></input>
     </div>
   );

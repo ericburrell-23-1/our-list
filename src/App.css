@@ -8,3 +8,17 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.FiltersAndButtonContainer {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  justify-content: center; /* Center the FiltersBar and AddNewButton */
+}
+
+.FiltersAndButtonWrapper {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-between; /* Add space between FiltersBar and AddNewButton */
+}

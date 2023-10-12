@@ -20,12 +20,19 @@ class FilterButtonWithDropdown extends Component {
   };
 
   toggleCheckAll = () => {
-    this.setState((prevState) => ({
-      areAllChecked: !prevState.areAllChecked,
-      checkedOptions: prevState.areAllChecked
-        ? new Set()
-        : new Set(this.props.options),
-    }));
+    this.setState(
+      (prevState) => ({
+        areAllChecked: !prevState.areAllChecked,
+        checkedOptions: prevState.areAllChecked
+          ? new Set()
+          : new Set(this.props.options),
+      }),
+      () => {
+        const { filter } = this.props;
+        const checkedOptionsArray = Array.from(this.state.checkedOptions);
+        this.props.onFilterChange(filter, checkedOptionsArray);
+      }
+    );
   };
 
   toggleOption = (option) => {
@@ -36,6 +43,9 @@ class FilterButtonWithDropdown extends Component {
       } else {
         checkedOptions.add(option);
       }
+
+      const selectedOptions = Array.from(checkedOptions); // Convert Set to an array
+      this.props.onFilterChange(this.props.filter, selectedOptions); // Call the prop function
 
       return {
         checkedOptions,

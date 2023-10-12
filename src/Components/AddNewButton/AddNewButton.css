@@ -1,0 +1,17 @@
+.AddNewButton {
+  font-weight: bold;
+  padding: 10px;
+  margin: 50px auto; /* Center the button horizontally */
+  border: 2px solid #61dafb;
+  border-radius: 10px;
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  min-width: 100px; /* Adjust the width as needed */
+}
+
+.AddNewButton:hover {
+  background-color: #61dafb;
+  color: #282c34;
+}

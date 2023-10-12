@@ -2,24 +2,38 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 3001;
-const serverIP = "192.168.0.6";
-const localIP = "127.0.0.1";
+const LOCAL_IP = require("../src/Utilities/constants").LOCAL_IP;
+const databaseIP = "127.0.0.1";
+const url = `mongodb://${databaseIP}:27017/restaurantList`;
 
-const url = `mongodb://${localIP}:27017/restaurantList`;
-
-const docSchema = mongoose.Schema({
-  docName: {
+// CREATE RESTAURANT SCHEMA AND MODEL
+const restaurantSchema = mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  postNum: {
-    type: Number,
+  cuisine: {
+    type: String,
     required: true,
   },
+  location: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: String,
+    required: true,
+    minLength: 1,
+    maxLength: 4,
+  },
+  notes: {
+    type: String,
+    maxLength: 500,
+  },
 });
+const Restaurant = mongoose.model("Restaurant", restaurantSchema);
 
-const Doc = mongoose.model("Doc", docSchema);
-
+// CONNECT TO MONGODB
 mongoose
   .connect(url, {
     useNewUrlParser: true,
@@ -27,18 +41,38 @@ mongoose
   })
   .then(() => console.log(`Connected to ${url}...`));
 
-app.get("/", (req, res) => {
-  res.send("Hello React!");
+// ENABLE JSON PARSING
+app.use(express.json());
+
+// GIVE ACCESS TO FRONT END DOMAIN ON PORT 3000
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", `http://${LOCAL_IP}:3000`);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
 });
 
-let postNum = 0;
-app.get("/newDoc", async (req, res) => {
-  postNum++;
-  const newDoc = new Doc({ docName: "Eric", postNum: postNum });
-  const result = await newDoc.save();
-  res.send(result);
+// GET ALL RESTAURANTS FROM DATABASE;
+app.get("/api/restaurants", async (req, res) => {
+  console.log(req.query);
+  const documents = await Restaurant.find(req.query).sort("name");
+  console.log(documents);
+  res.send(documents);
 });
 
+// POST NEW RESTAURANT TO DATABASE
+app.post("/api/add-restaurant", async (req, res) => {
+  console.log("req.body: ", req.body);
+  const newRestaurant = new Restaurant(req.body);
+  const result = await newRestaurant.save();
+  const documents = await Restaurant.find({}).sort("name");
+  res.send(documents);
+});
+
+// ENABLE SERVER ON SPECIFIED PORT
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://${LOCAL_IP}:${port}`);
+  // CONSIDER LOGGING THIS WITH WINSTON
 });

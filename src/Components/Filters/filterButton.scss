@@ -3,10 +3,10 @@
   display: grid;
   grid-template-rows: 1;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 60%;
+  width: 100%; /* Adjust the width as needed */
   font-weight: bold;
   padding: 10px;
-  margin: 50px;
+  margin: 50px auto; /* Center the FiltersBar horizontally */
   border: 2px solid #61dafb;
   border-radius: 10px;
   background-color: #282c34;
