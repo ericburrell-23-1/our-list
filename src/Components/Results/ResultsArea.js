@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RestaurantDetailPopUp from "../PopUps/RestaurantDetailPopUp";
 import "./Results.css";
 const createFilterParams = require("../../Utilities/Functions");
 
@@ -6,6 +7,23 @@ const LOCAL_IP = require("../../Utilities/constants").LOCAL_IP;
 
 const ResultsArea = ({ restaurants, filters }) => {
   const [restaurantData, setRestaurantData] = useState([]);
+  const [showDetail, setShowDetail] = useState(false);
+  const [selectedRestaurant, setSelectedRestaurant] = useState({});
+
+  const handleRestaurantClick = (restaurantID) => {
+    // Retrieve restaurant data by id from restaurantData
+    const clickedRestaurant = restaurantData.find(
+      (restaurant) => restaurant._id === restaurantID
+    );
+
+    // Set the restaurant data and show the detail view
+    setSelectedRestaurant(clickedRestaurant);
+    setShowDetail(true);
+  };
+
+  const handleCloseRestaurantDetail = () => {
+    setShowDetail(false);
+  };
 
   useEffect(() => {
     const paramString = createFilterParams(filters);
@@ -22,7 +40,13 @@ const ResultsArea = ({ restaurants, filters }) => {
 
   return (
     <div>
-      <p>Restaurants will display here:</p>
+      <p>Matching restaurants:</p>
+      {showDetail && (
+        <RestaurantDetailPopUp
+          restaurant={selectedRestaurant}
+          onClose={handleCloseRestaurantDetail}
+        />
+      )}
       <table className="Styled-table">
         <thead>
           <tr>
@@ -34,7 +58,10 @@ const ResultsArea = ({ restaurants, filters }) => {
         </thead>
         <tbody>
           {restaurantData.map((restaurant) => (
-            <tr key={restaurant._id}>
+            <tr
+              key={restaurant._id}
+              onClick={() => handleRestaurantClick(restaurant._id)}
+            >
               <td>{restaurant.name}</td>
               <td>{restaurant.cuisine}</td>
               <td>{restaurant.location}</td>
