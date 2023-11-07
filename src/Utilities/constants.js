@@ -14,6 +14,7 @@ const FORM_OPTIONS = {
     "Mexican",
     "Pizza",
     "Sushi",
+    "Tapas",
   ].sort(),
 
   LOCATION_OPTIONS: [

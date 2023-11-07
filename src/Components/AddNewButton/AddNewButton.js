@@ -6,7 +6,6 @@ function AddNewButton({ onFormSubmit }) {
   const [isPopUpVisible, setPopUpVisible] = useState(false);
 
   const togglePopUp = () => {
-    console.log("AddNewRestaurantPopUp Toggled"); // Add this line for debugging
     setPopUpVisible(!isPopUpVisible);
   };
 

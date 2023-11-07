@@ -11,7 +11,6 @@ function App() {
   const [filters, setFilters] = useState({});
 
   const handleFormSubmit = (restaurantData) => {
-    console.log("Form submitted, received restaurant data: ", restaurantData);
     setRestaurants(restaurantData);
   };
   const handleFilterSelect = (filterData) => {
@@ -25,18 +24,11 @@ function App() {
     setFilters((prevFilters) => {
       const newFilters = { ...prevFilters };
       if (searchName !== "") {
-        console.log(
-          `Searching for restaurants with name including ${searchName}...`
-        );
         const regex = `.*${searchName}.*`; // Construct the regular expression pattern
         newFilters.name = { $regex: regex, $options: "i" };
       } else {
-        console.log("Removing restaurant name from search criteria");
         delete newFilters.name;
       }
-      console.log(
-        `These are the filters being applied: ${JSON.stringify(newFilters)}`
-      );
       return newFilters;
     });
   };
@@ -57,7 +49,11 @@ function App() {
           />
         </div>
       </div>
-      <ResultsArea restaurants={restaurants} filters={filters} />
+      <ResultsArea
+        restaurants={restaurants}
+        filters={filters}
+        onFormSubmit={handleFormSubmit}
+      />
     </div>
   );
 }

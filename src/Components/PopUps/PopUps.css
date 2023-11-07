@@ -209,3 +209,28 @@ p {
   right: 10px;
   cursor: pointer;
 }
+
+/* Style for the edit form */
+.restaurant-edit-form {
+  position: static;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1002; /* Ensure it's on top of other popups */
+}
+.restaurant-edit-form input {
+  border: 0px;
+}
+
+.restaurant-edit-form textarea {
+  border: 0px;
+  resize: none; /* Disable resizing by the user */
+  height: auto; /* Automatically adjust height to fit content */
+  overflow-y: hidden; /* Hide vertical scroll bar initially */
+}

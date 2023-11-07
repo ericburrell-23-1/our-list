@@ -27,21 +27,17 @@ function AddRestaurantPopUp({ togglePopUp, onFormSubmit }) {
       };
 
       // Send a POST request to server
-      const response = await fetch(
-        `http://${LOCAL_IP}:3001/api/add-restaurant`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", // Specify the content type
-          },
-          body: JSON.stringify(restaurantData), // Convert data to JSON format
-        }
-      );
+      const URLString = `http://${LOCAL_IP}:3001/api/add-restaurant`;
+      const response = await fetch(URLString, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Specify the content type
+        },
+        body: JSON.stringify(restaurantData), // Convert data to JSON format
+      });
 
       if (response.ok) {
-        // The restaurant was added successfully
         console.log("Restaurant added successfully.");
-        console.log("Form submitted with data:", formData);
         // Close the popup
         onFormSubmit(response.json());
         togglePopUp();

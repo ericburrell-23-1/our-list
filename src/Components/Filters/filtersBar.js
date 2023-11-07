@@ -29,21 +29,13 @@ const FiltersBar = ({ onFilterSelect }) => {
 
     // Update the filter with the selected options
     updatedFilters[filter] = selectedOptionsArray;
-    console.log(`Filters updated to: ${JSON.stringify(updatedFilters)}`);
     setFilterData(updatedFilters);
 
     onFilterSelect(updatedFilters);
   };
   return (
     <div>
-      <form
-        className="Filters-bar"
-        action={
-          console.log(
-            `form action happened with filterData = ${filterData}`
-          ) /*onFilterSelect(filterData)*/
-        }
-      >
+      <form className="Filters-bar">
         <FilterButtonWithDropdown
           filter="cuisine"
           options={CUISINE_OPTIONS}

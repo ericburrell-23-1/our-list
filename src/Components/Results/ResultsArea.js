@@ -5,7 +5,7 @@ const createFilterParams = require("../../Utilities/Functions");
 
 const LOCAL_IP = require("../../Utilities/constants").LOCAL_IP;
 
-const ResultsArea = ({ restaurants, filters }) => {
+const ResultsArea = ({ restaurants, filters, onFormSubmit }) => {
   const [restaurantData, setRestaurantData] = useState([]);
   const [showDetail, setShowDetail] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState({});
@@ -29,11 +29,9 @@ const ResultsArea = ({ restaurants, filters }) => {
     const paramString = createFilterParams(filters);
 
     const URLString = `http://${LOCAL_IP}:3001/api/restaurants?${paramString}`;
-    console.log(`Attempting to fetch ${URLString}...`);
     fetch(URLString)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setRestaurantData(data);
       });
   }, [restaurants, filters]);
@@ -45,6 +43,7 @@ const ResultsArea = ({ restaurants, filters }) => {
         <RestaurantDetailPopUp
           restaurant={selectedRestaurant}
           onClose={handleCloseRestaurantDetail}
+          onEdit={onFormSubmit}
         />
       )}
       <table className="Styled-table">
